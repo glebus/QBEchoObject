@@ -17,7 +17,7 @@ static QBEchoObject *instance = nil;
 {
     @synchronized(self)
     {
-        if (!instance)
+        if (!instance)ff
         {
             instance = self.new;
         }
@@ -29,6 +29,7 @@ static QBEchoObject *instance = nil;
 - (void)completedWithResult:(Result *)result context:(void *)contextInfo
 {
     ((__bridge void (^)(Result * result))(contextInfo))(result);
+    Block_release(contextInfo);
 }
 
 - (void)completedWithResult:(Result *)result
