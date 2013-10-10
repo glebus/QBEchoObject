@@ -15,13 +15,11 @@ static QBEchoObject *instance = nil;
 
 + (QBEchoObject *)instance
 {
-    @synchronized(self)
-    {
-        if (!instance)ff
-        {
-            instance = [self new];
-        }
-    }
+    static dispatch_once_t once;
+    
+    dispatch_once(&once, ^{
+        instance = [self new];
+    });
 	
     return instance;
 }
