@@ -19,4 +19,4 @@ Example:
         }
     };
     
-    [QBUsers logInWithUserEmail:email password:password delegate:QBEchoObject.instance context:(__bridge_retained void *)(block)];
+    [QBUsers logInWithUserEmail:email password:password delegate:[QBEchoObject instance] context:[QBEchoObject makeBlockForEchoObject:block]];
