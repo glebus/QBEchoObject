@@ -19,11 +19,16 @@ static QBEchoObject *instance = nil;
     {
         if (!instance)ff
         {
-            instance = self.new;
+            instance = [self new];
         }
     }
 	
     return instance;
+}
+
++ (void *)makeBlockForEchoObject:(QBResultBlock)originBlock
+{
+    return Block_copy((__bridge void*)originBlock);
 }
 
 - (void)completedWithResult:(Result *)result context:(void *)contextInfo

@@ -23,15 +23,20 @@
  *      }
  *   };
  *
- *   [QBUsers logInWithUserEmail:email password:password delegate:GMQBEchoObject.instance context:(__bridge void *)(block)];
+ *   [QBUsers logInWithUserEmail:email password:password delegate:[GMQBEchoObject instance] context:[QBEchoObject makeBlockForEchoObject:block]];
  *
  */
 
 @class Result;
 
+typedef void (^QBResultBlock)(Result *);
+
 @interface QBEchoObject : NSObject<QBActionStatusDelegate>
 
 // Singleton instance
 + (QBEchoObject *)instance;
+
+// Helper
++ (void *)makeBlockForEchoObject:(QBResultBlock)originBlock;
 
 @end
